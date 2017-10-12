@@ -1,0 +1,77 @@
+<?php
+header("Content-type: text/html; charset=utf-8");
+	$con = mysqli_connect('localhost','root','','test1');
+	mysqli_query($con,"set names utf8");
+	$sql1=mysqli_query($con,"select count(*) from news");
+	$total = mysqli_num_rows($sql1);
+	$num = 10;
+	$page = isset($_GET['p'])?$_GET['p']:1;
+	$pagenum = ceil($total/$num);
+	$offset = ($page-1)*$num;
+	
+
+	// mysql 分页处理
+	
+	// 链接 mysql
+	
+	// 打开数据库
+	
+	// 执行 sql 语句
+
+	// 分页业务：获取总数据记录数-》求得总页数
+	
+	
+	
+	// 选取【当前页码】所需要显示的数据
+	echo $sql = "select * from news limit $offset,$num";
+	$res = mysqli_query($con,$sql);
+	while ($row = mysqli_fetch_assoc($res)) {
+		$data[] = $row;
+	}
+	//var_dump($data);
+	//var_dump($res);
+    
+	// 执行分页 sql 语句
+	
+	// 处理返回的分页结果
+
+		
+?>
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Pagination</title>
+		<style type="text/css">
+			body {text-align: center;}
+		</style>
+	</head>
+	<body>
+		
+		<div>
+			<h2>内容列表</h2>
+			<?php  // 分页结果 循环处理
+				foreach($data as $key => $value) {
+			?>		
+			<p>
+				<?php echo $key;?>
+				<?php echo $value['content'];?>
+			</p>
+			<?php }?>
+		</div>
+		
+		<div>
+			<a href="fenye.php?p=1">1</a>
+			<a href="fenye.php?p=2">2</a>
+			<a href="fenye.php?p=3">3</a>
+			<a href="fenye.php?p=4">4</a>
+			<a href="fenye.php?p=5">5</a>
+			<a href="fenye.php?p=6">6</a>
+			<a href="fenye.php?p=7">7</a>
+			<a href="fenye.php?p=8">8</a>
+			<a href="fenye.php?p=9">9</a>
+			<a href="fenye.php?p=10">10</a>
+		</div>
+	</body>
+
+</html>
